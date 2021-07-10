@@ -25,23 +25,34 @@ function readLine() {
 }
 
 // Complete the rotLeft function below.
-function rotLeft(a, d) {
-    //declare finalArray to store the array shifted d units to the left
-    let finalArray;
-    //if d === 0 (array is not shifted), then return an initial array
-    if (d === 0) {
-        return a;
-    }
-    //otherwise shift the array d units to the left
-    else {
-        finalArray = a.reduce(function (accumulator, currentValue, index, array) {
-            accumulator[(index - d % array.length + array.length) % array.length] = currentValue;
-            return accumulator;
-        }, [])
-    }
+// function rotLeft(a, d) {
+//     //declare finalArray to store the array shifted d units to the left
+//     let finalArray;
+//     //if d === 0 (array is not shifted), then return an initial array
+//     if (d === 0) {
+//         return a;
+//     }
+//     //otherwise shift the array d units to the left
+//     else {
+//         finalArray = a.reduce(function (accumulator, currentValue, index, array) {
+//             accumulator[(index - d % array.length + array.length) % array.length] = currentValue;
+//             return accumulator;
+//         }, [])
+//     }
 
-    return finalArray;
+//     return finalArray;
+// }
+
+// O(n) time, O(n) space
+function rotLeft(a, d) {
+    // Write your code here
+    let aLength = a.length;
+    let shiftLeft = d % aLength;
+
+    return [...a.slice(shiftLeft), ...a.slice(0, shiftLeft)]
 }
+
+
 
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
